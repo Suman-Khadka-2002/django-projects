@@ -8,7 +8,7 @@ def home(request):
 
 def add(request):
 
-    value1 = int(request.GET['num1'])
-    value2 = int(request.GET['num2'])
+    value1 = int(request.POST['num1'])  # Requesting num1 value, also by default value1 gets string value so converting to integer type
+    value2 = int(request.POST['num2'])
     res = value1 + value2
     return render(request, 'result.html', {'result':res})
