@@ -8,7 +8,27 @@
 </head>
 <body>
     <form action="register" method="post"> <!-- this registration will go to server, and the server has database-->
+        {% csrf_token %}
 
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name"><br>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name"><br>
+
+        <label for="username">Username</label>
+        <input type="text" name="username"><br>
+
+        <label for="email id">Email</label>
+        <input type="email" name="email"><br>
+
+        <label for="password1">Password</label>
+        <input type="password" name="password1"><br>
+
+        <label for="password2">Confirm Password</label>
+        <input type="password" name="password2"><br>
+
+        <input type="Submit" value="Submit">
     </form>
 </body>
 </html>
