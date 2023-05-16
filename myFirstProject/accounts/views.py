@@ -55,3 +55,7 @@ def register(request):
     
     else:
         return render(request, 'register.html') # get data
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
