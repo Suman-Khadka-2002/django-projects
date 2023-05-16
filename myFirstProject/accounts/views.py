@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.models import User, auth
 
 # Create your views here.
@@ -13,20 +14,23 @@ def register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
 
-        if (password1 == password2):
+        if password1 == password2:
             if User.objects.filter(username = username).exists():
-                print('Username already taken.')
+                messages.info(request, 'Username already taken.')
+                return redirect('register')
+
             elif User.objects.filter(email = email).exists():
-                print("Email already taken.")
+                messages.info(request, "Email already taken.")
+                return redirect('register')
+
             else:
                 user = User.objects.create_user(username=username, password = password1, email=email, first_name=first_name, last_name=last_name)
                 user.save()
                 print('User created.') #prints in console after the user is created
-                
 
         else:
-            print("password not matching.")
-
+            messages.info(request, "password not matching.")
+            return redirect('register')
         return redirect('/')  # redirects to homepage
     
     else:
